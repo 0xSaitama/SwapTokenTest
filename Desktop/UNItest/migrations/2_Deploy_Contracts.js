@@ -11,6 +11,7 @@ module.exports = async function(deployer, _network, accounts) {
  const MyDeFi = await MyDeFiProject.deployed();
  const balanceWBefore = await MyDeFi.getbalance(wethAddress, accounts[0]);
  const balanceDBefore = await MyDeFi.getbalance(daiAddress, accounts[0]);
+ await MyDeFi.approveStack(daiAddress, 10);
  await MyDeFi.swapTokensForEth(daiAddress, 10, Amountmin , 60);
  const balanceWAfter = await MyDeFi.getbalance(wethAddress, accounts[0]);
  const balanceDAfter = await MyDeFi.getbalance(daiAddress, accounts[0]);

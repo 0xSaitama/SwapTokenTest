@@ -19,7 +19,9 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(`${process.env.MNEMONIC}`, `https://kovan.infura.io/v3/${process.env.INFURA_ID}`)
       },
-      network_id: 42
+      network_id: 42,
+      confirmations: 2, // # of confs to wait between deployments. (default: 0)
+      skipDryRun: true
     }
   },
 
