@@ -1,4 +1,5 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
+
 require('dotenv').config();
 
 module.exports = {
@@ -17,11 +18,11 @@ module.exports = {
     },
     kovan: {
       provider: function() {
-        return new HDWalletProvider(`${process.env.MNEMONIC}`, `https://kovan.infura.io/v3/${process.env.INFURA_ID}`)
+        var wallet = new HDWalletProvider(`${process.env.MNEMONIC}`, `https://kovan.infura.io/v3/${process.env.INFURA_ID}`);
+        return wallet;
       },
       network_id: 42,
-      confirmations: 2, // # of confs to wait between deployments. (default: 0)
-      skipDryRun: true
+
     }
   },
 

@@ -3,16 +3,23 @@ import "./IUni.sol";
 contract MyDeFiProject  {
  IUniswap uniswap;
 
+
  constructor(address _uniswap) public {
    uniswap = IUniswap(_uniswap);
  }
+
+receive() external payable { }
 
  function getbalance(address token, address owner) external view returns (uint) {
    IERC20(token).balanceOf(owner);
  }
 
+ function getAllowance(address token) external view returns(uint) {
+   IERC20(token).allowance(msg.sender, address(this));
+ }
+
  function approveStack(address token, uint toAllow) external returns(bool) {
-   IERC20(token).approve(address(uniswap), toAllow);
+   IERC20(token).approve(address(this), toAllow);
  }
   // La fonction qui va permettre le swap
  function swapTokensForEth(address token, uint amountIn, uint amountOutMin, uint deadline) external {
